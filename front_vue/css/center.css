@@ -1,0 +1,366 @@
+/* center_model  */
+.canter_Model .model_head .logo {
+  max-height: 90px;
+  margin: 10px 20px;
+}
+.canter_Model .model_head .nowInfo {
+  position: absolute;
+  top: 60px;
+  left: 310px;
+}
+.canter_Model .model_head .driveInfon {
+  position: absolute;
+  top: -10px;
+  right: 10px;
+}
+.driveInfon .text {
+  width: 200px;
+  font-size: 20px;
+  position: absolute;
+  color: #eee;
+  top: 80px;
+  right: 100px;
+}
+.driveInfon .text #driveText {
+  border: 1px solid #eee;
+  padding: 3px 6px;
+  margin-left: 6px;
+  cursor: pointer;
+}
+.driveInfon .driveImg {
+  max-width: 130px;
+  cursor: pointer;
+}
+.cartInfo {
+  width: 970px;
+  height: 140px;
+  margin: 5px auto;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: #eee;
+}
+.cartInfo .infoDiv {
+  width: 316px;
+  background-color: rgba(41, 41, 41, 0.5);
+  box-sizing: border-box;
+}
+.cartInfo .infoDiv2 {
+  padding: 10px 0;
+  color: #646262;
+}
+.cartInfo .infoDiv2 ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.cartInfo .lightDiv ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.cartInfo .lightDiv .light {
+  width: 60px;
+  height: 30px;
+  font-size: 10px;
+  text-align: center;
+  line-height: 30px;
+  margin-top: 5px;
+  color: rgb(109, 106, 106);
+  border: 1px solid rgb(100, 98, 98);
+}
+.cartInfo .lightDiv .active {
+  color: #fff;
+  border: 1px solid #fff;
+  box-shadow: rgb(163, 163, 172) 0px 0px 5px 1px inset;
+}
+.cartInfo .lightDiv .warning {
+  color: red;
+  border: 1px solid red;
+}
+.model_head .nowInfo {
+  color: #02d5ff;
+}
+.model_head .nowInfo .time {
+  font-size: 30px;
+  font-weight: 800;
+}
+/* 操作 */
+.canter_Model .model_operation .steer {
+  /* background-color: rgba(255, 255, 255, 0.1); */
+  text-align: right;
+  font-size: 20px;
+  position: absolute;
+  bottom: 0px;
+  left: 30px;
+}
+.model_operation .steer_degree {
+  width: 100%;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0 5px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.model_operation .steer #steer_img {
+  min-width: 250px;
+  transition: all 2s ease 0s;
+}
+.model_operation .steer_degree .degreeImg {
+  max-width: 40px;
+}
+.model_operation .steer_degree .brakeImg {
+  transform: rotate(180deg);
+}
+.model_operation .steer_degree .degreeText {
+  width: 50px;
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+  vertical-align: top;
+  line-height: 40px;
+}
+/* 挡位 */
+.gear {
+  width: 220px;
+  /* height: 150px; */
+  position: absolute;
+  right: 30px;
+  bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.gear .gearStutus {
+  width: 80px;
+  height: 80px;
+  line-height: 75px;
+  text-align: center;
+  color: #eee;
+  font-size: 30px;
+  font-weight: 400;
+  margin: 15px 15px;
+  border: 3px solid #eee;
+  box-sizing: border-box;
+  display: inline-block;
+  border-radius: 50%;
+}
+.gear .activeS {
+  background-color: #eee;
+  color: #1a1a1a;
+}
+/* 刹车，油门 */
+.canter_Model .model_operation .pos {
+  position: absolute;
+  right: 500px;
+  bottom: 30px;
+}
+.canter_Model .model_operation .percentage {
+  position: absolute;
+  right: 300px;
+  bottom: 20px;
+}
+.canter_Model .model_operation .pos_img {
+  max-width: 130px;
+}
+.canter_Model .model_operation .percentage_img {
+  max-width: 90px;
+}
+/* 进度条 */
+.pos .container {
+  left: -20px;
+  top: -100px;
+}
+.percentage .container {
+  left: -30px;
+  top: -50px;
+}
+.container {
+  width: 150px;
+  height: 30px;
+  border: 1px solid #bdbdbd;
+  border-radius: 30px;
+  position: absolute;
+  overflow: hidden;
+}
+.container .skills {
+  width: 0%;
+  height: 100%;
+  transition: all 1s ease 0s;
+  position: absolute;
+  bottom: 0px;
+  padding: 2px;
+  box-sizing: border-box;
+}
+.container .skillsText {
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  z-index: 1;
+  position: absolute;
+  left: 40%;
+  top: 5px;
+}
+.pos .container .skills {
+  background-image: linear-gradient(to left, #116ddd, #26fdff);
+}
+.percentage .container .skills {
+  background-image: linear-gradient(to left, #f2560b, #d9af08);
+}
+.hangangle {
+  position: absolute;
+  top: 260px;
+  left: 80px;
+}
+.hangangle .imgCart {
+  max-width: 200px;
+  position: absolute;
+}
+.hangangle .imgCartBox {
+  max-width: 170px;
+  position: absolute;
+  z-index: 1;
+  top: -20px;
+  left: -25px;
+  transform-origin: 22px 50px;
+  transition: transform 2s ease 0s;
+}
+.hangangle .hangangleStutus {
+  width: 30px;
+  color: #eee;
+  font-size: 20px;
+  position: absolute;
+  z-index: 1;
+  top: -30px;
+  right: -180px;
+}
+/* 车速、油耗 */
+.canter_Model .oil-speed {
+  position: absolute;
+  top: 10px;
+  left: 40px;
+}
+.canter_Model .oil-speed > div {
+  width: 300px;
+  height: 40px;
+  margin: 15px 0;
+  position: relative;
+}
+.canter_Model .oil-speed > div img {
+  position: absolute;
+  top: 5px;
+  min-width: 40px;
+}
+.canter_Model .oil-speed > div p {
+  position: absolute;
+  left: 50px;
+  color: #464444;
+}
+.canter_Model .oil-speed > div .value {
+  font-size: 30px;
+  font-weight: 600;
+  padding: 0 5px;
+  color: #eee;
+}
+.overlook {
+  position: absolute;
+  right: 100px;
+  /* background-color: #eee; */
+  width: 500px;
+  height: 500px;
+  padding: 50px;
+  box-sizing: border-box;
+}
+.overlook .overlookImg {
+  max-width: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -80%);
+}
+.overlook .wptList .wptItem {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+/* .overlook .round {
+  position: relative;
+  padding: 13px;
+}
+.overlook .round div {
+  background: #eee;
+}
+.overlook .circle_bottom {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 100%;
+  width: 5px;
+  height: 5px;
+  filter: alpha(opacity=40);
+  z-index: 110;
+  position: absolute;
+  top: 18px;
+  left: 18px;
+}
+.overlook .circle_bottom2 {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 100%;
+  width: 10px;
+  height: 10px;
+  filter: alpha(opacity=20);
+  z-index: 100;
+  position: relative;
+}
+.overlook .animation {
+  -webkit-animation: twinkling 2.1s infinite ease-in-out;
+  animation: twinkling 2.1s infinite ease-in-out;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.overlook .animation2 {
+  -webkit-animation: twinkling 2.1s infinite ease-in-out;
+  animation: twinkling 2.1s infinite ease-in-out;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes twinkling {
+  0% {
+    opacity: 0.1;
+    filter: alpha(opacity=10);
+    -webkit-transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    filter: alpha(opacity=30);
+    -webkit-transform: scale(1.12);
+  }
+  100% {
+    opacity: 0.1;
+    filter: alpha(opacity=10);
+    -webkit-transform: scale(1);
+  }
+}
+@keyframes twinkling {
+  0% {
+    opacity: 0.1;
+    filter: alpha(opacity=10);
+    -webkit-transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    filter: alpha(opacity=30);
+    -webkit-transform: scale(1.12);
+  }
+  100% {
+    opacity: 0.1;
+    filter: alpha(opacity=10);
+    -webkit-transform: scale(1);
+  }
+} */

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>车载</title>
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/center.css" />
+    <link rel="stylesheet" href="./css/right.css" />
+    <link rel="stylesheet" href="./css/left.css" />
+    <script src="./lib/roslib.js"></script>
+    <script src="./lib/eventemitter2.min.js"></script>
+    <script src="./lib/mjpegcanvas.min.js"></script>
+    <script src="./lib/vue.js"></script>
+  </head>
+
+  <body onload="init();init_ros();">
+    <div id="app">
+      <div id="global">
+        <div class="left_Model">
+          <div class="model model_truckInfo">
+            <div class="truckImg">
+              <img class="truck" src="./img/宽体车图-01.png" alt="" />
+              <div class="iconList">
+                <div class="frontTruck">
+                  <div class="truckIcon tx">
+                    <img class="health" src="./img/天线.png" alt="" />
+                    <div class="info">HARPS+RTK主副天线</div>
+                  </div>
+                  <div class="truckIcon jfld">
+                    <img
+                      class="truckIcon danger"
+                      src="./img/激光雷达.png"
+                      alt=""
+                    />
+                    <div class="info">激光雷达</div>
+                  </div>
+                  <div class="truckIcon hmbld">
+                    <img class="health" src="./img/毫米波雷达.png" alt="" />
+                    <div class="info">毫米波雷达</div>
+                  </div>
+                  <div class="truckIcon csbld">
+                    <img class="health" src="./img/超声波雷达.png" alt="" />
+                    <div class="info">超声波雷达</div>
+                  </div>
+                  <div class="truckIcon ycjkxj">
+                    <img class="health" src="./img/远程监控相机.png" alt="" />
+                    <div class="info">远程监控相机</div>
+                  </div>
+                  <div class="truckIcon zxj">
+                    <img class="health" src="./img/主相机.png" alt="" />
+                    <div class="info">主相机</div>
+                  </div>
+                </div>
+                <div class="sideTruck">
+                  <div class="truckIcon mqxj">
+                    <img class="health" src="./img/盲区相机1.png" alt="" />
+                    <br />
+                    <div class="info">盲区相机</div>
+                  </div>
+                </div>
+                <div class="afterTruck">
+                  <div class="truckIcon jgld">
+                    <img class="health" src="./img/激光雷达.png" alt="" />
+                    <br />
+                    <div class="info">激光雷达</div>
+                  </div>
+                  <div class="truckIcon mqxj">
+                    <img class="health" src="./img/盲区相机1.png" alt="" />
+                    <br />
+                    <div class="info">盲区相机</div>
+                  </div>
+                  <div class="truckIcon hmbld">
+                    <img class="health" src="./img/毫米波雷达.png" alt="" />
+                    <br />
+                    <div class="info">毫米波雷达</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="infoList">
+              <table class="table">
+                <thead class="fixedThead">
+                  <tr>
+                    <th>车辆健康信息</th>
+                  </tr>
+                </thead>
+                <tbody id="test" class="scrollTbody">
+                  <tr>
+                    <td>
+                      <span class="title">激光雷达</span>
+                      ————
+                      <span>【无障碍】</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="title">毫米波雷达</span>
+                      ————
+                      <span class="warn">【一般障碍】</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="title">超声波雷达</span>
+                      ————
+                      <span>【严重障碍】</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="title">远程监控相机</span>
+                      ————
+                      <span>【无障碍】</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="title">主相机</span>
+                      ————
+                      <span>【致命障碍】</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="title">盲区相机</span>
+                      ————
+                      <span>【无障碍】</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="canter_Model">
+          <div class="model model_head">
+            <img class="logo" src="./img/logo.png" alt="" />
+            <div class="nowInfo">
+              <span id="now_time" class="time">13:22</span>
+              <span id="now_date" class="date">2021-08-05</span>
+            </div>
+            <div class="driveInfon">
+              <div class="text">
+                <p>当前为 <span id="driveText">人工驾驶</span></p>
+              </div>
+              <img
+                id="driveImg"
+                class="driveImg"
+                src="./img/人工驾驶.png"
+                alt=""
+              />
+            </div>
+            <div class="cartInfo">
+              <div class="infoDiv">
+                <ul></ul>
+              </div>
+              <div class="infoDiv infoDiv2">
+                <ul>
+                  <li>
+                    <span class="title" id="EPBText">电子手刹</span>
+                    <span></span>
+                  </li>
+                  <li>
+                    <span class="title" id="hangangleText">举升</span>
+                    <span></span>
+                  </li>
+                  <li><span class="title">控制状态机</span> <span></span></li>
+                </ul>
+              </div>
+              <div class="infoDiv lightDiv">
+                <ul>
+                  <li class="light"></li>
+                  <li class="light"></li>
+                  <li class="light"></li>
+                  <li class="light"></li>
+                  <li class="light"></li>
+                  <li class="light"></li>
+                  <li class="light"></li>
+                  <li class="light"></li>
+                  <li class="light"></li>
+                  <li class="light"></li>
+                  <li class="light"></li>
+                  <li class="light"></li>
+                  <li class="light"></li>
+                  <li class="light"></li>
+                  <li class="light"></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="model model_operation">
+            <div class="overlook">
+              <img class="overlookImg" src="./img/俯视.png" alt="" />
+              <canvas width="400" height="400" id="wptCanvas"></canvas>
+              <!-- <div class="wptList">
+                <li class="wptItem">
+                  <div class="round">
+                    <div class="circle_bottom animation"></div>
+                    <div class="circle_bottom2 animation2"></div>
+                  </div>
+                </li>
+                <li class="wptItem">
+                  <div class="round">
+                    <div class="circle_bottom animation"></div>
+                    <div class="circle_bottom2 animation2"></div>
+                  </div>
+                </li>
+                <li class="wptItem">
+                  <div class="round">
+                    <div class="circle_bottom animation"></div>
+                    <div class="circle_bottom2 animation2"></div>
+                  </div>
+                </li>
+                <li class="wptItem">
+                  <div class="round">
+                    <div class="circle_bottom animation"></div>
+                    <div class="circle_bottom2 animation2"></div>
+                  </div>
+                </li>
+                <li class="wptItem">
+                  <div class="round">
+                    <div class="circle_bottom animation"></div>
+                    <div class="circle_bottom2 animation2"></div>
+                  </div>
+                </li>
+                <li class="wptItem">
+                  <div class="round">
+                    <div class="circle_bottom animation"></div>
+                    <div class="circle_bottom2 animation2"></div>
+                  </div>
+                </li>
+                <li class="wptItem">
+                  <div class="round">
+                    <div class="circle_bottom animation"></div>
+                    <div class="circle_bottom2 animation2"></div>
+                  </div>
+                </li>
+                <li class="wptItem">
+                  <div class="round">
+                    <div class="circle_bottom animation"></div>
+                    <div class="circle_bottom2 animation2"></div>
+                  </div>
+                </li>
+                <li class="wptItem">
+                  <div class="round">
+                    <div class="circle_bottom animation"></div>
+                    <div class="circle_bottom2 animation2"></div>
+                  </div>
+                </li>
+                <li class="wptItem">
+                  <div class="round">
+                    <div class="circle_bottom animation"></div>
+                    <div class="circle_bottom2 animation2"></div>
+                  </div>
+                </li>
+                <li class="wptItem">
+                  <div class="round">
+                    <div class="circle_bottom animation"></div>
+                    <div class="circle_bottom2 animation2"></div>
+                  </div>
+                </li>
+                <li class="wptItem">
+                  <div class="round">
+                    <div class="circle_bottom animation"></div>
+                    <div class="circle_bottom2 animation2"></div>
+                  </div>
+                </li>
+                <li class="wptItem">
+                  <div class="round">
+                    <div class="circle_bottom animation"></div>
+                    <div class="circle_bottom2 animation2"></div>
+                  </div>
+                </li>
+                <li class="wptItem">
+                  <div class="round">
+                    <div class="circle_bottom animation"></div>
+                    <div class="circle_bottom2 animation2"></div>
+                  </div>
+                </li>
+                <li class="wptItem">
+                  <div class="round">
+                    <div class="circle_bottom animation"></div>
+                    <div class="circle_bottom2 animation2"></div>
+                  </div>
+                </li>
+                <li class="wptItem">
+                  <div class="round">
+                    <div class="circle_bottom animation"></div>
+                    <div class="circle_bottom2 animation2"></div>
+                  </div>
+                </li>
+                <li class="wptItem">
+                  <div class="round">
+                    <div class="circle_bottom animation"></div>
+                    <div class="circle_bottom2 animation2"></div>
+                  </div>
+                </li>
+                <li class="wptItem">
+                  <div class="round">
+                    <div class="circle_bottom animation"></div>
+                    <div class="circle_bottom2 animation2"></div>
+                  </div>
+                </li>
+                <li class="wptItem">
+                  <div class="round">
+                    <div class="circle_bottom animation"></div>
+                    <div class="circle_bottom2 animation2"></div>
+                  </div>
+                </li>
+                <li class="wptItem">
+                  <div class="round">
+                    <div class="circle_bottom animation"></div>
+                    <div class="circle_bottom2 animation2"></div>
+                  </div>
+                </li>
+                <li class="wptItem" style="top: 0px; left: 0px">
+                  <div class="round">
+                    <div class="circle_bottom animation"></div>
+                    <div class="circle_bottom2 animation2"></div>
+                  </div>
+                </li>
+                <li class="wptItem" style="top: 20px; left: 0px">
+                  <div class="round">
+                    <div class="circle_bottom animation"></div>
+                    <div class="circle_bottom2 animation2"></div>
+                  </div>
+                </li>
+                <li class="wptItem" style="top: 0px; left: 20px">
+                  <div class="round">
+                    <div class="circle_bottom animation"></div>
+                    <div class="circle_bottom2 animation2"></div>
+                  </div>
+                </li>
+              </div> -->
+            </div>
+            <div class="oil-speed">
+              <!-- <div class="milage">
+                <img src="./img//里程.png" alt="" />
+                <p>里程:<span class="value">501</span> km</p>
+              </div> -->
+              <div class="oilMass">
+                <img src="./img/油耗.png" alt="" />
+                <p>
+                  瞬时油耗:<span class="value" id="fuel">0.00</span> L/100km
+                </p>
+              </div>
+              <div class="speed">
+                <img src="./img/车速.png" alt="" />
+                <p>车速:<span class="value">0</span> km/h</p>
+              </div>
+            </div>
+            <div class="hangangle">
+              <span id="hangangleStutus" class="hangangleStutus">0 °</span>
+              <div class="hangangleImg">
+                <img
+                  id="imgCartBox"
+                  class="imgCartBox"
+                  src="./img/举升车厢-01.png"
+                  alt=""
+                />
+                <img class="imgCart" src="./img/举升车.png" alt="" />
+              </div>
+            </div>
+            <div class="steer">
+              <div class="steer_degree">
+                <div class="gas">
+                  <b id="gasText" class="degreeText">0°</b>
+                  <img class="degreeImg gasImg" src="./img/箭头.png" alt="" />
+                </div>
+                <div class="brake">
+                  <img class="degreeImg brakeImg" src="./img/箭头.png" alt="" />
+                  <b id="brakeText" class="degreeText">0°</b>
+                </div>
+              </div>
+              <img id="steer_img" src="./img/方向盘.png" alt="" />
+            </div>
+            <div class="gear">
+              <div class="gearStutus" id="gearEPB">P</div>
+              <div class="gearStutus">R</div>
+              <div class="gearStutus">N</div>
+              <div class="gearStutus">D</div>
+            </div>
+            <div class="pos">
+              <div class="container">
+                <div id="pos_skillsText" class="skillsText">0%</div>
+                <div id="pos_skills" class="skills"></div>
+              </div>
+              <img id="pos_img" class="pos_img" src="./img/pos.png" alt="" />
+            </div>
+            <div class="percentage">
+              <div class="container">
+                <div id="percentage_skillsText" class="skillsText">0%</div>
+                <div id="percentage_skills" class="skills"></div>
+              </div>
+              <img
+                id="percentage_img"
+                class="percentage_img"
+                src="./img/percentage.png"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+        <div class="right_Model">
+          <div class="model model_camer">
+            <div id="videoCanvas"></div>
+            <div id="videoCanvas1"></div>
+          </div>
+          <div class="model model_info"></div>
+          <div class="model model_rtk">
+            <div class="title">
+              <svg
+                t="1628839303292"
+                class="icon"
+                viewBox="0 0 1025 1024"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                p-id="2161"
+                width="32"
+                height="32"
+              >
+                <path
+                  d="M432.877037 518.755668a88.046876 88.046876 0 0 0 175.973139 0 85.755245 85.755245 0 0 0-10.734482-42.093643l353.031788-180.918238a21.951413 21.951413 0 0 0 12.061216-14.111623 24.122432 24.122432 0 0 0-1.567958-18.333048c-31.359161-59.341182-82.619329-116.631957-152.212544-170.063143S649.978922 8.325013 546.252466 0.123386a22.554474 22.554474 0 0 0-18.333048 6.513057A24.122432 24.122432 0 0 0 520.320852 24.245818v406.462974a88.2881 88.2881 0 0 0-87.443815 88.046876z m88.046876 39.922624A39.922624 39.922624 0 1 1 560.846537 518.755668a39.802012 39.802012 0 0 1-39.922624 39.922624z"
+                  fill="#444444"
+                  p-id="2162"
+                ></path>
+                <path
+                  d="M253.285533 358.100273a312.626715 312.626715 0 0 0 267.035319 473.402722 334.095679 334.095679 0 0 0 76.106272-9.166524 312.867939 312.867939 0 0 0 227.836367-378.963402 24.122432 24.122432 0 0 0-10.975706-14.714684 24.122432 24.122432 0 0 0-35.459975 26.655288 264.502464 264.502464 0 1 1-483.654755-72.367296 261.004711 261.004711 0 0 1 162.464577-119.888485 23.157534 23.157534 0 0 0 14.714684-10.975707 24.122432 24.122432 0 0 0-8.322239-32.927119 24.122432 24.122432 0 0 0-18.212436-2.532855A307.922841 307.922841 0 0 0 253.285533 358.100273z"
+                  fill="#444444"
+                  p-id="2163"
+                ></path>
+                <path
+                  d="M1015.916211 413.220029a24.122432 24.122432 0 0 0-10.131421-15.07652 24.122432 24.122432 0 0 0-17.971212-3.618364 24.122432 24.122432 0 0 0-15.197132 10.131421 23.157534 23.157534 0 0 0-3.618364 17.971212A464.598035 464.598035 0 1 1 423.710513 54.157633a24.122432 24.122432 0 0 0 15.317744-10.010809 24.122432 24.122432 0 0 0 3.618365-17.971212 24.122432 24.122432 0 0 0-10.131422-15.317744 24.122432 24.122432 0 0 0-17.971211-3.618364 511.878001 511.878001 0 0 0-326.497113 217.101885 512.239837 512.239837 0 0 0 138.100921 711.611735 510.310043 510.310043 0 0 0 285.609592 88.046876 522.491871 522.491871 0 0 0 98.781357-9.769585 512.601674 512.601674 0 0 0 405.377465-601.010386z"
+                  fill="#444444"
+                  p-id="2164"
+                ></path>
+                <path
+                  d="M567.842042 50.418656a429.982345 429.982345 0 0 1 211.674339 80.930759 511.395552 511.395552 0 0 1 126.763378 133.397047L566.877145 438.548582V50.418656z"
+                  fill="#50B3EA"
+                  p-id="2165"
+                ></path>
+              </svg>
+              <span>组合定位 <span id="rtk_state"></span></span>
+            </div>
+            <div class="main">
+              <ul class="ul_left">
+                <li>纬度: <span id="rtk_lat">39.102</span></li>
+                <li>经度: <span id="rtk_lng">110.273</span></li>
+                <li>海拔高度: <span id="rtk_alt">1409.453</span></li>
+                <li>航向角: <span id="rtk_headingangle">-0.0423 °</span></li>
+              </ul>
+              <ul class="ul_right">
+                <li>卫星数量: <span>8</span></li>
+                <li>enu坐标系x值: <span id="rtk_x_enu">-42.440</span></li>
+                <li>enu坐标系y值: <span id="rtk_y_enu">-560.054</span></li>
+                <li>enu坐标系z值: <span id="rtk_z_enu">-3.451</span></li>
+                <li>enu坐标系精度: <span id="rtk_xy_std_enu">0.022</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./js/index.js"></script>
+    <script src="./js/index_vue.js"></script>
+  </body>
+</html>

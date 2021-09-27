@@ -1,0 +1,48 @@
+/* 1040 */
+.right_Model .model_camer {
+  width: 100%;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.right_Model .model_rtk {
+  width: 100%;
+  height: 300px;
+}
+.right_Model .model_info {
+  width: 100%;
+  /* height: 300px; */
+}
+
+.right_Model .model_rtk .title {
+  padding: 10px;
+  border-bottom: 1px solid #292929;
+}
+.right_Model .model_rtk .title span {
+  color: #eee;
+  font-size: 20px;
+  vertical-align: top;
+  line-height: 30px;
+  padding: 0 5px;
+}
+.right_Model .model_rtk .main {
+  display: flex;
+  padding: 20px;
+}
+.right_Model .model_rtk .main ul {
+  list-style: none;
+}
+.right_Model .model_rtk .main ul li {
+  color: #8f8f8f;
+  line-height: 40px;
+}
+.right_Model .model_rtk .main ul li span {
+  font-weight: 600;
+  margin: 0 5px;
+}
+.right_Model .model_rtk .main .ul_left {
+  margin-right: 30px;
+}
+.right_Model .model_rtk .main .ul_right {
+}

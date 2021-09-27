@@ -1,0 +1,164 @@
+.left_Model .model_truckInfo .truckImg {
+  position: relative;
+}
+.left_Model .model_truckInfo .truck {
+  max-width: 400px;
+}
+.left_Model .iconList img {
+  border-radius: 50%;
+  padding: 2px;
+  max-width: 18px;
+}
+.left_Model .iconList .health {
+  background-color: #24a664;
+}
+.left_Model .iconList .danger {
+  background-color: #cf676e;
+}
+/* icon */
+.truckIcon {
+  position: absolute;
+}
+.left_Model .iconList .info {
+  position: absolute;
+  color: #fff;
+  display: none;
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 10px;
+}
+/* 主视图 天线 */
+.left_Model .frontTruck .tx {
+  top: 20px;
+  left: 180px;
+}
+.left_Model .frontTruck .tx .info {
+  top: -15px;
+  left: 30px;
+}
+/* 主视图 激光雷达 */
+.left_Model .frontTruck .jfld {
+  top: 25px;
+  left: 130px;
+}
+.left_Model .frontTruck .jfld .info {
+  left: -70px;
+  top: -15px;
+}
+/* 主视图 毫米波雷达 */
+.left_Model .frontTruck .hmbld {
+  top: 145px;
+  left: 180px;
+}
+.left_Model .frontTruck .hmbld .info {
+  left: 30px;
+  top: 5px;
+}
+/* 主视图 超声波雷达 */
+.left_Model .frontTruck .csbld {
+  top: 140px;
+  left: 140px;
+}
+.left_Model .frontTruck .csbld .info {
+  left: -100px;
+  top: 0px;
+}
+/* 主视图 远程监控相机 */
+.left_Model .frontTruck .ycjkxj {
+  top: 50px;
+  left: 250px;
+}
+/* 主视图 主相机 */
+.left_Model .frontTruck .zxj {
+  top: 55px;
+  left: 180px;
+}
+/* 后视图 激光雷达 */
+.left_Model .afterTruck .jgld {
+  bottom: 70px;
+  left: 150px;
+}
+/* 后视图 盲区相机 */
+.left_Model .afterTruck .mqxj {
+  bottom: 70px;
+  left: 185px;
+}
+/* 后视图 盲区相机 */
+.left_Model .afterTruck .hmbld {
+  bottom: 70px;
+  left: 220px;
+}
+.left_Model .sideTruck .mqxj {
+  top: 370px;
+  left: 200px;
+}
+
+.truckIcon:hover .info {
+  display: inline-block;
+}
+
+.left_Model .infoList {
+  padding: 20px;
+}
+.left_Model .infoList ul {
+  list-style: none;
+}
+.left_Model .infoList ul li {
+  line-height: 30px;
+  font-size: 20px;
+  color: #eee;
+}
+.left_Model .infoList ul li .title {
+  display: inline-block;
+  text-align: center;
+  width: 90px;
+  color: #8f8f8f;
+}
+
+.left_Model .infoList ul li .grad0 {
+  color: #5e8a35;
+  padding-left: 10px;
+}
+
+.left_Model .table {
+  width: 100%;
+  left: 30%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.left_Model .table .fixedThead {
+  display: block;
+  width: 100%;
+}
+.left_Model .table .scrollTbody {
+  display: block;
+  width: 300px;
+  height: 240px;
+  overflow: hidden;
+  width: 100%;
+}
+.left_Model .table td {
+  width: 300px;
+  border-bottom: #333 1px dashed;
+  padding: 5px 20px 5px;
+  color: #eee;
+}
+.left_Model .table th {
+  width: 300px;
+  border-bottom: #333 1px dashed;
+  border-top: #333 1px dashed;
+  padding: 5px;
+  line-height: 24px;
+  color: #ff0000;
+}
+.left_Model .table tr {
+  border-bottom: #333 1px dashed;
+  line-height: 24px;
+  padding: 5px;
+}
+.left_Model .table tr .title {
+  display: inline-block;
+  width: 100px;
+}
+.left_Model .table tr .warn {
+  width: 100px;
+}

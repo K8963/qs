@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 1080px;
+  width: 1920px;
+}
+ul,
+li {
+  list-style: none;
+}
+/* 1880 * 1040 */
+#global {
+  width: 100%;
+  height: 100%;
+  background-color: #101010;
+  background-size: cover;
+  filter: (2px);
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.model {
+  background-color: #1a1a1a;
+  border: 1px solid #292929;
+  box-sizing: border-box;
+}
+.left_Model {
+  width: 400px;
+  height: 1040px;
+}
+.canter_Model {
+  width: 990px;
+  height: 1040px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.right_Model {
+  width: 450px;
+  height: 1040px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.left_Model .model_truckInfo {
+  width: 100%;
+  height: 100%;
+}
+.canter_Model .model_head {
+  width: 100%;
+  height: 270px;
+  position: relative;
+}
+.canter_Model .model_operation {
+  width: 100%;
+  height: 750px;
+  position: relative;
+}
