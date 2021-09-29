@@ -1,5 +1,5 @@
 const ros = new ROSLIB.Ros();
-
+let displayData = {};
 // 初始化
 function init() {
   var readyStateCheckInterval = setInterval(function () {
@@ -20,18 +20,19 @@ ros.on("close", function () {
   this.rosStatus = false;
   console.log("---未建立连接---");
 });
-ros.on("connection", function () {
+ros.on("connection", async () => {
   console.log("---连接成功---");
   var listener = new ROSLIB.Topic({
     ros: ros,
     name: "/zone3/data_display",
   });
 
-  listener.subscribe(function (message) {
+  await listener.subscribe((message) => {
     getData(message);
   });
 });
-function getData(data) {
-  let displayData = data;
-  return displayData;
+
+function getData(message) {
+  displayData = message;
+  return displayData
 }
