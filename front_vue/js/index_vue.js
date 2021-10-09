@@ -208,34 +208,63 @@ var app = new Vue({
       });
     },
     // 轨迹
-    handleXY(x, y) {
-      console.log();
-    },
     getWptC() {
+      // console.log(this.displayData.wpt_x);
+      // console.log(this.displayData.wpt_y);
+      // let wpt_x = [
+      //   -0.7806352367689442, 0.19418055782921329, 1.1670592710084975,
+      //   2.2439038606474924, 3.32714745171279, 4.308120791183455, 5.375958902077741,
+      //   6.380360206138221, 7.43152220118111, 8.72245294974698, 9.858064790681397,
+      //   11.021864614839046, 12.202478623274828, 13.425779066767177,
+      //   14.446582641900022, 15.781608670095238, 17.06708097614444, 18.298465124732274,
+      //   19.494540490669237, 20.510928255011663,
+      // ];
+      // let wpt_y = [
+      //   4.60704349996081, 4.238721502290673, 3.8840615003098264, 3.469437213783067,
+      //   3.163807979398598, 2.8811948673414918, 2.5973021805573353, 2.427803363583962,
+      //   2.2526504932636726, 2.164657534774733, 2.145438585735292, 2.1405321314300636,
+      //   2.2389878342385146, 2.413039164570364, 2.5872765373508173, 2.8505683817431873,
+      //   3.139143511596785, 3.4833172144965374, 3.8734778765317515, 4.208314958897745,
+      // ];
+      let xL = this.displayData.wpt_x.map((item, index, array) => {
+        item = Number((item * 10).toFixed(0));
+        return item;
+      });
+      let yL = this.displayData.wpt_y.map((item, index, array) => {
+        item = -Number((item * 10).toFixed(0));
+        return item;
+      });
+      // console.log(xL, yL);
       const canvas = document.getElementById("wptCanvas");
       const ctx = canvas.getContext("2d");
       ctx.translate(200, 200);
-      ctx.fillStyle = "red";
-      // console.log(pointI);
-      ctx.beginPath();
+      // ctx.fillStyle = "red";
+      // ctx.beginPath();
+      // ctx.fillStyle = "red";
       // ctx.fillRect(0, 0, 10, 10);
-      // ctx.fillRect(20, 0, 10, 10);
+      // ctx.fillStyle = "blue";
       // ctx.fillRect(0, 20, 10, 10);
+      // ctx.fillRect(0, -20, 10, 10);
+      // ctx.fillStyle = "green";
+      // ctx.fillRect(20, 0, 10, 10);
+      // ctx.fillRect(-20, 0, 10, 10);
       for (let i = 0; i <= 20; i++) {
         ctx.fillStyle = "#eee";
-        ctx.arc(pointI.x[i], pointI.y[i], 3, 0, Math.PI * 2);
-        // ctx.arc(0, 0, 3, 0, Math.PI * 2);
+        ctx.arc(xL[i], yL[i], 3, 0, Math.PI * 2);
         ctx.closePath();
         ctx.fill();
       }
+      // ctx.clearRect(-200, -200, 400, 400);
     }
+
   },
   created() {
     this.init_ros()
   },
   mounted() {
     this.getLight();
-    this.setCarm()
+    this.setCarm();
+    // this.getWptC()
   },
   watch: {
     // 刹车\油门\举升\驾驶状态\EPB\档位
@@ -407,17 +436,19 @@ var app = new Vue({
           item = Number((item * 10).toFixed(0));
           return item;
         });
-        console.log(xL);
+        console.log("xL:" + newV);
+        // this.getWptC();
       },
       deep: true
     },
     "displayData.wpt_y": {
       handler: function (newV, oldV) {
         let yL = newV.map((item, index, array) => {
-          item = Number((item * 10).toFixed(0));
+          item = -Number((item * 10).toFixed(0));
           return item;
         });
-        // console.log(yL);
+        console.log("yL:" + newV);
+        // this.getWptC();
       },
       deep: true
     },
