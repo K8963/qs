@@ -23,7 +23,7 @@ var app = new Vue({
       "后位置灯",
       "制动灯",
       "倒车灯",
-    ]
+    ],
   },
   methods: {
     // 刹车\油门\举升\驾驶状态\EPB\档位
@@ -255,11 +255,10 @@ var app = new Vue({
         ctx.fill();
       }
       // ctx.clearRect(-200, -200, 400, 400);
-    }
-
+    },
   },
   created() {
-    this.init_ros()
+    this.init_ros();
   },
   mounted() {
     this.getLight();
@@ -270,164 +269,169 @@ var app = new Vue({
     // 刹车\油门\举升\驾驶状态\EPB\档位
     "displayData.current_brake_pedal_pos": {
       handler: function (newV, oldV) {
-        newV = Math.round(newV)
-        this.changePos(newV)
-      }
+        newV = Math.round(newV);
+        this.changePos(newV);
+      },
     },
     "displayData.current_throttle_percentage": {
       handler: function (newV, oldV) {
         this.changeThrottle(newV);
-      }
+      },
     },
     "displayData.current_steer": {
       handler: function (newV, oldV) {
         this.changeSteer(newV);
-      }
+      },
     },
     "displayData.current_gear": {
       handler: function (newV, oldV) {
         this.changeGear(newV);
-      }
+      },
     },
     "displayData.current_hang_angle": {
       handler: function (newV, oldV) {
         this.changeHangangle(newV);
-      }
+      },
     },
     "displayData.auto_mode": {
       handler: function (newV, oldV) {
         this.changeDrive(newV);
-      }
+      },
     },
     "displayData.current_EPB": {
       handler: function (newV, oldV) {
         this.changeEPB(newV);
-      }
+      },
     },
     "displayData.instant_fuel": {
       handler: function (newV, oldV) {
         newV = newV.toFixed(2);
         this.changeFuel(newV);
-      }
+      },
     },
     // 组合定位
     "displayData.rtk_state": {
       handler: function (newV, oldV) {
         this.RTKState(newV);
-      }
+      },
     },
     "displayData.lat": {
       handler: function (newV, oldV) {
         newV = newV.toFixed(3);
         this.changeRtk("rtk_lat", newV);
-      }
+      },
     },
     "displayData.lng": {
       handler: function (newV, oldV) {
         newV = newV.toFixed(3);
         this.changeRtk("rtk_lng", newV);
-      }
+      },
     },
     "displayData.alt": {
       handler: function (newV, oldV) {
         newV = newV.toFixed(3);
         this.changeRtk("rtk_alt", newV);
-      }
+      },
     },
     "displayData.x_enu": {
       handler: function (newV, oldV) {
         newV = newV.toFixed(3);
         this.changeRtk("rtk_x_enu", newV);
-      }
+      },
     },
     "displayData.y_enu": {
       handler: function (newV, oldV) {
         newV = newV.toFixed(3);
         this.changeRtk("rtk_y_enu", newV);
-      }
+      },
     },
     "displayData.xy_std_enu": {
       handler: function (newV, oldV) {
         newV = newV.toFixed(3);
         this.changeRtk("rtk_xy_std_enu", newV);
-      }
+      },
     },
     "displayData.headingangle": {
       handler: function (newV, oldV) {
         newV = newV.toFixed(3);
         this.changeRtk("rtk_headingangle", newV);
-      }
+      },
     },
     // 灯光
     "displayData.left_light": {
       handler: function (newV, oldV) {
         this.changeLight("左转灯", newV);
-      }
+      },
     },
     "displayData.right_light": {
       handler: function (newV, oldV) {
         this.changeLight("右转灯", newV);
-      }
-    }, "displayData.near_light": {
+      },
+    },
+    "displayData.near_light": {
       handler: function (newV, oldV) {
         this.changeLight("近光灯", newV);
-      }
-    }, "displayData.far_light": {
+      },
+    },
+    "displayData.far_light": {
       handler: function (newV, oldV) {
         this.changeLight("远光灯", newV);
-      }
+      },
     },
     "displayData.top_warning_light": {
       handler: function (newV, oldV) {
         this.changeLight("旋转报警灯", newV);
-      }
-    }, "displayData.front_fog_light": {
+      },
+    },
+    "displayData.front_fog_light": {
       handler: function (newV, oldV) {
         this.changeLight("前雾灯", newV);
-      }
-    }, "displayData.front_work_light": {
+      },
+    },
+    "displayData.front_work_light": {
       handler: function (newV, oldV) {
         this.changeLight("前工作灯", newV);
-      }
-    }, "displayData.side_light": {
+      },
+    },
+    "displayData.side_light": {
       handler: function (newV, oldV) {
         this.changeLight("侧照灯", newV);
-      }
+      },
     },
     "displayData.position_light": {
       handler: function (newV, oldV) {
         this.changeLight("位置灯", newV);
-      }
+      },
     },
     "displayData.back_left_light": {
       handler: function (newV, oldV) {
         this.changeLight("左后转向灯", newV);
-      }
+      },
     },
     "displayData.back_right_light": {
       handler: function (newV, oldV) {
         this.changeLight("右后转向灯", newV);
-      }
+      },
     },
     "displayData.back_position_light": {
       handler: function (newV, oldV) {
         this.changeLight("后位置灯", newV);
-      }
+      },
     },
     "displayData.brake_light": {
       handler: function (newV, oldV) {
         this.changeLight("制动灯", newV);
-      }
+      },
     },
     "displayData.reverse_light": {
       handler: function (newV, oldV) {
         this.changeLight("倒车灯", newV);
-      }
+      },
     },
     "displayData.back_work_light": {
       handler: function (newV, oldV) {
         this.changeLight("后工作灯", newV);
-      }
+      },
     },
     // 轨迹
     "displayData.wpt_x": {
@@ -436,10 +440,10 @@ var app = new Vue({
           item = Number((item * 10).toFixed(0));
           return item;
         });
-        console.log("xL:" + newV);
+        // console.log("xL:" + newV);
         // this.getWptC();
       },
-      deep: true
+      deep: true,
     },
     "displayData.wpt_y": {
       handler: function (newV, oldV) {
@@ -447,10 +451,10 @@ var app = new Vue({
           item = -Number((item * 10).toFixed(0));
           return item;
         });
-        console.log("yL:" + newV);
+        // console.log("yL:" + newV);
         // this.getWptC();
       },
-      deep: true
+      deep: true,
     },
   },
 });
