@@ -169,7 +169,7 @@ var app = new Vue({
         if (i == item) {
           if (value === 1) {
             light[i].classList.add("active");
-            console.log(value);
+            // console.log(value);
           } else if (value === 0) {
             light[i].classList.remove("active");
             light[i].classList.remove("warning");
@@ -259,13 +259,20 @@ var app = new Vue({
   },
   created() {
     this.init_ros();
+    this.displayData.left_light = 1;
   },
   mounted() {
     this.getLight();
     this.setCarm();
     // this.getWptC()
+    // this.changeLight("左转灯", 1);
   },
   watch: {
+    displayData: {
+      handler: function (newV, oldV) {
+        // console.log(newV);
+      },
+    },
     // 刹车\油门\举升\驾驶状态\EPB\档位
     "displayData.current_brake_pedal_pos": {
       handler: function (newV, oldV) {
